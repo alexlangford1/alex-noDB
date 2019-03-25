@@ -3,6 +3,8 @@ import axios from "axios";
 import Footer from "./footer";
 import Vacation from "./vacation";
 import Title from "./Title";
+import Unsplash from "./newUnplash";
+
 class Create extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,10 @@ class Create extends Component {
     };
   }
 
+  imageClick = (i) => {
+    this.setState({imageUrl: i})
+  }
+
   createVacation = (vacation) => {
     axios
       .post("/api/vacation", vacation)
@@ -28,7 +34,6 @@ class Create extends Component {
   };
   handleChange = (e) => {
     let { name, value } = e.target;
-
     this.setState({ [name]: value });
   };
 
@@ -47,7 +52,7 @@ class Create extends Component {
     this.complicated();
   };
   complicated = () => {
-    this.setState({ addButton: false });
+    this.setState({ addButton: false, imageUrl: '', title: '', destination: '', arrival: '', depart: '', budget: '' });
   };
 
   addAdditional = () => {
@@ -57,21 +62,25 @@ class Create extends Component {
   render() {
     const { addButton } = this.state;
     if (this.state.adder === false) {
-      this.complicated();
+      this.complicated()
       this.setState({ adder: true });
     }
     return addButton ? (
       <section className="create">
+        <div className="background" />
         <div className="title-inputpage">
           <Title />
         </div>
+        <Unsplash imageClick={this.imageClick}/>
         <input
+          autoComplete="off"
           type="text"
           name="title"
           placeholder="Vacation Title"
           onChange={this.handleChange}
         />
         <input
+          autoComplete="off"
           type="text"
           name="destination"
           placeholder="Destination"
@@ -90,19 +99,13 @@ class Create extends Component {
           onChange={this.handleChange}
         />
         <input
-          type="text"
-          name="imageUrl"
-          placeholder="Image"
-          onChange={this.handleChange}
-        />
-        <input
           type="number"
           name="budget"
           placeholder="$ Budget"
           onChange={this.handleChange}
         />
         <button
-          onClick={this.handleClick}
+          onClick={() => this.handleClick()}
           style={{ borderBottomStyle: "solid" }}
         >
           add

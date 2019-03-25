@@ -12,16 +12,6 @@ let vacations = [
   },
   {
     id: id++,
-    title: "Bali Trip",
-    destination: "Bali Bali",
-    arrival: "01/01/2020",
-    depart: "01/02/2030",
-    imageUrl:
-      "https://images.unsplash.com/photo-1545922521-ffc22e0de375?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    budget: "10000",
-  },
-  {
-    id: id++,
     title: "Dubai Trip",
     destination: "Dubai",
     arrival: "01/01/2020",
@@ -48,7 +38,7 @@ module.exports = {
       budget,
     };
 
-    vacations.push(vacay);
+    vacations.unshift(vacay);
     res.status(200).send(vacations);
   },
   delete: (req, res) => {

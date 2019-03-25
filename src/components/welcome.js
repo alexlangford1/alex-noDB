@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Create from "./CreateVaca";
-import axios from "axios";
 import Footer from "./footer";
 import Title from "./Title";
 class Welcome extends Component {
@@ -10,20 +9,12 @@ class Welcome extends Component {
       addBtn: true,
       addBtn2: false,
       adder: true,
-      vacations: [],
     };
   }
   addHandler = () => {
     this.setState({ addBtn: false });
   };
-  componentDidMount() {
-    axios
-      .get("/api/vacation")
-      .then((res) => {
-        this.setState({ vacations: res.data });
-      })
-      .catch((err) => console.log("we have a problem", err));
-  }
+  
   clickHandler = () => {
     this.setState({ addBtn2: true, adder: false });
   };

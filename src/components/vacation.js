@@ -96,7 +96,13 @@ class Vacation extends Component {
               </header>
               <h1 className="yourVacay">Your Vacations</h1>
               <br />
-              <img src={e.imageUrl} width="800px" height="530px" alt="img" />
+              <img
+                src={e.imageUrl}
+                width="800px"
+                height="530px"
+                alt="img"
+                style={{ borderRadius: "7px" }}
+              />
               <section className="vacayboxwords">
                 <div className="edit-buttons">
                   <button onClick={() => this.deleteVaca(e.id)}>X</button>
